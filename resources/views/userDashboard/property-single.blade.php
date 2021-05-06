@@ -185,7 +185,7 @@
                 <div class="col-md-12 col-lg-4">
                     <div class="property-contact">
                     @if ($user->status == 'Sale')
-                        <form class="form-a" method="post" action="/order/{{ Auth::user()->id }}/{{ $apartment_id }}">
+                        <form class="form-a" method="post" action="/rent/{{ Auth::user()->id }}/{{ $apartment_id }}">
                             @csrf
                             <div class="row">
                             <h4 class="mb-3">Write us to Rent the Apartment</h4>

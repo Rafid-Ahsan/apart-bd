@@ -93,7 +93,7 @@
                     </a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">{{ $apartments->links()}}</a>
+                    <a class="page-link" href="#">{{ $apartments->links() }}</a>
                   </li>
                   <li class="page-item next">
                     <a class="page-link" href="#">

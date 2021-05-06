@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApartmentController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\InboxController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\Teamcontroller;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -31,20 +33,22 @@ Route::get('logout', function() {
 Route::get('/dashboard/{id}', [ApartmentController::class, 'show'])->middleware(['auth'])->name('dashboard');
 Route::get('/add-property', [ApartmentController::class, 'index'])->middleware(['auth']);
 Route::post('/apartment/{id}', [ApartmentController::class, 'store'])->middleware(['auth']);
-Route::get('/apartment/{id}', [ApartmentController::class, 'showSingleApartment'])->middleware(['auth']); // Route to Single Apartment
+Route::get('/apartment/{id}', [ApartmentController::class, 'showSingleApartment']); // Route to Single Apartment
 
 // All Apartments Routes
 Route::get('/apartments', [ApartmentController::class, 'showAllApartments']);
 
-// Apartment Rent Order Routes
-Route::post('/order/{user_id}/{apartment_id}', [OrderController::class, 'store'])->middleware(['auth']);
+// Apartment Rent Routes
+Route::post('/rent/{user_id}/{apartment_id}', [RentController::class, 'store'])->middleware(['auth']);
 
 // Apartment search Routes
 Route::get('/search-apartment', [ApartmentController::class, 'search']);
 
 // Admin Routes
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:admin|moderator']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/inbox', [InboxController::class, 'index']);
+    Route::get('/team', [Teamcontroller::class, 'index']);
 });
 
 require __DIR__.'/auth.php';

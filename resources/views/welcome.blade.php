@@ -133,55 +133,58 @@
 
         <div id="property-carousel" class="swiper-container">
             <div class="swiper-wrapper">
-                @foreach ($latests as $latest)
-              <div class="carousel-item-b swiper-slide">
-                <div class="card-box-a card-shadow">
-                    <div class="img-box-a">
-                        <img src="{{ asset('uploads/apartments/'. head(json_decode($latest->house_image))) }}" class="img-a img-fluid">
+        @foreach($latests->chunk(3) as $items)
+          @foreach($items as $user)
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{ asset('uploads/apartments/'.head(json_decode($user->house_image))) }}" alt="" class="img-a img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="#">{{ $user->name }}
+                        <br /> {{ $user->house_number . " ". $user->road . " " . $user->thana . " " . $user->district . " " . $user->division . " " . $user->zip_code}}</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">rent | TK {{ $user->rent }}</span>
                     </div>
-                  <div class="card-overlay">
-                    <div class="card-overlay-a-content">
-                      <div class="card-header-a">
-                        <h2 class="card-title-a">
-                          <a href="/apartment/{{ $latest->id }}">{{ $latest->house_number }} {{ $latest->name }}
-                            <br /> {{ $latest->road }}</a>
-                        </h2>
-                      </div>
-                      <div class="card-body-a">
-                        <div class="price-box d-flex">
-                          <span class="price-a">rent | {{ $latest->rent }}TK</span>
-                        </div>
-                        <a href="/apartment/{{ $latest->id }}" class="link-a">Click here to view
-                          <span class="bi bi-chevron-right"></span>
-                        </a>
-                      </div>
-                      <div class="card-footer-a">
-                        <ul class="card-info d-flex justify-content-around">
-                          <li>
-                            <h4 class="card-info-title">Area</h4>
-                            <span>{{ $latest->area }}m
-                              <sup>2</sup>
-                            </span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Beds</h4>
-                            <span>{{ $latest->beds }}</span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Baths</h4>
-                            <span>{{ $latest->baths }}</span>
-                          </li>
-                          <li>
-                            <h4 class="card-info-title">Garages</h4>
-                            <span>{{ $latest->garage }}</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                    <a href="/apartment/{{ $user->id }}" class="link-a">Click here to view
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Area</h4>
+                        <span>{{ $user->area }}m
+                          <sup>2</sup>
+                        </span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Beds</h4>
+                        <span>{{ $user->beds }}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        <span>{{ $user->baths }}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Garages</h4>
+                        <span>{{ $user->garage }}</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-              </div><!-- End carousel item -->
-              @endforeach
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        @endforeach
             </div>
           </div>
           <div class="propery-carousel-pagination carousel-pagination"></div>

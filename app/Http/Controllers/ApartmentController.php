@@ -98,7 +98,7 @@ class ApartmentController extends Controller
     }
 
     public function showAllApartments() {
-        $apartments = Apartment::orderby('created_at', 'asc')->get();
+        $apartments = Apartment::orderby('created_at', 'asc')->limit(6)->paginate();
 
         return view('all_apartments', [
             'apartments' => $apartments
