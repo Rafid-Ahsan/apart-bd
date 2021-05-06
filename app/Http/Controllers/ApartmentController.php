@@ -36,18 +36,6 @@ class ApartmentController extends Controller
     }
 
     public function store(Request $request) {
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'house_number' => 'required|string|max:11',
-        //     'house_image' => 'required',
-        //     'road' => 'required|integer|max:2',
-        //     'area' => 'required|max:255|string',
-        //     'thana' => 'required|max:255|string',
-        //     'district' => 'required|max:255|string',
-        //     'division' => 'required|max:255|string',
-        //     'zip_code' => 'required'
-        // ]);
-
         $apartment = new Apartment();
 
         $aparts = [];

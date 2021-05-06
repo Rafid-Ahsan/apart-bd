@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\InboxController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\Teamcontroller;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,11 @@ Route::post('/rent/{user_id}/{apartment_id}', [RentController::class, 'store'])-
 
 // Apartment search Routes
 Route::get('/search-apartment', [ApartmentController::class, 'search']);
+
+//Profile Routes
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->middleware(['auth']);
+Route::put('/profile/update/{user}', [ProfileController::class, 'update'])->middleware(['auth']);
+
 
 // Admin Routes
 Route::group(['middleware' => ['role:admin|moderator']], function () {

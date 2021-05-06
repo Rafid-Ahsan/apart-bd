@@ -12,7 +12,21 @@
                     <small>{{ $inbox->seller_info($inbox->seller_id)->mobile_number }}</small>
                 </div>
 
-                <p class="my-3"><strong>Message: </strong>{{ $inbox->message }}</p>
+                <form action="/inbox/update/{{ $inbox->id }}" method="post">
+                    @csrf
+                    @method('put')
+
+                    <div class="d-flex w-100 justify-content-between my-3">
+                        <p><strong>Message: </strong>{{ $inbox->message }}</p>
+                        <div class="dropdown">
+                            <select name="{{ $inbox->status }}" class="btn btn-danger">
+                                <option value="unread">Unread</option>
+                                <option value="read">Read</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
 
                 <div class="d-flex w-100 justify-content-between">
                     <a class="text-white" href="/profile/{{ $inbox->buyer_info($inbox->buyer_id)->id }}" style="text-decoration: none">

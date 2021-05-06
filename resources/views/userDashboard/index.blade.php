@@ -36,7 +36,7 @@
                 <div class="col-sm-12">
                     <div class="grid-option">
                         <a href="/add-property" class="btn btn-lg btn-primary">Add property</a>
-                        {{-- <a href="/profile" class="btn btn-lg btn-success">Edit Profile</a> --}}
+                        <a href="/profile/{{ Auth::user()->id }}" class="btn btn-lg btn-success">Edit Profile</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,6 @@
           <div class="col-sm-12">
             <div class="grid-option">
                 <a href="/add-property" class="btn btn-lg btn-primary">Add property</a>
-                <a href="/profile" class="btn btn-lg btn-success">Edit Profile</a>
             </div>
           </div>
           @foreach($items as $user)
