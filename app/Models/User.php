@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
 use App\Models\Apartment;
-use App\Models\Order;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
@@ -54,7 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(Apartment::class);
     }
 
-    public function orders() {
-        return $this->hasMany(Order::class);
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'model_has_roles');
     }
 }
