@@ -53,9 +53,4 @@ class User extends Authenticatable
     public function apartments() {
         return $this->hasMany(Apartment::class);
     }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'model_has_roles');
-    }
 }

@@ -54,7 +54,11 @@ Route::put('/profile/update/{user}', [ProfileController::class, 'update'])->midd
 Route::group(['middleware' => ['role:admin|moderator']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/inbox', [InboxController::class, 'index']);
+
+    //team routes
     Route::get('/team', [Teamcontroller::class, 'index']);
+    Route::put('/team/update/{user}', [Teamcontroller::class, 'update']);
+    Route::get('/team/deleteRole/{user}', [Teamcontroller::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';

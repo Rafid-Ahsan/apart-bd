@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="container" style="margin-top: 2em; margin-bottom: 5em;">
+        @if(Session::has('msg'))
+            <p class="alert alert-success">{{ Session::get('msg') }}</p>
+        @endif
+
         <table class="table">
             <thead>
               <tr>
@@ -12,23 +16,36 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+                @foreach ($users as $user)
+                    <tr>
+                        <form action="/team/update/{{ $user->id }}" method="post">
+                            @csrf
+                            @method('put')
+
+                            <th scope="row">1</th>
+                            <td>{{ $user->first_name }}</td>
+                            <td>
+                                <select class="form-select" name="role">
+                                    <option selected>{{ $user->roles->pluck('name')->first() }}</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="/team/deleteRole/{{ $user->id }}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                @endforeach
+
             </tbody>
           </table>
         </div>
