@@ -114,7 +114,7 @@ class ApartmentController extends Controller
             if($request->city == null) {
                 return;
             }   else {
-                $query->where('city', 'like', '%'. strtolower(preg_replace('/\s+/', '', $request->city)) .'%');
+                $query->where('area', 'like', '%'. strtolower(preg_replace('/\s+/', '', $request->city)) .'%');
             }
         })
         ->when( $request->beds, function($query) use ($request){

@@ -22,7 +22,8 @@ class Apartment extends Model
         'division',
         'zip_code',
         'rent',
-        'description'
+        'description',
+        'status'
     ];
 
     public function users() {

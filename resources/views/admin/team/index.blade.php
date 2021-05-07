@@ -12,7 +12,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Role</th>
-                <th scope="col">Action</th>
+                @role('admin')
+                    <th scope="col">Action</th>
+                @endrole
               </tr>
             </thead>
             <tbody>
@@ -25,28 +27,36 @@
                             <th scope="row">1</th>
                             <td>{{ $user->first_name }}</td>
                             <td>
-                                <select class="form-select" name="role">
-                                    <option selected>{{ $user->roles->pluck('name')->first() }}</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
+                                @role('admin')
+                                    <select class="form-select" name="role">
+                                        <option selected>{{ $user->roles->pluck('name')->first() }}</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    {{ $user->roles->pluck('name')->first() }}
+                                @endrole
                             </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                            @role('admin')
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="/team/deleteRole/{{ $user->id }}" class="btn btn-danger">Delete</a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href="/team/deleteRole/{{ $user->id }}" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
+                                </td>
+                            @endrole
                         </form>
                     </tr>
                 @endforeach
 
             </tbody>
           </table>
+
+          {{ $users->links() }}
         </div>
 @endsection

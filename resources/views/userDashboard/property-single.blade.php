@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="property-contact">
-                    @if ($user->status == 'Sale')
+                    @if ($user->status == 'sale')
                         <form class="form-a" method="post" action="/rent/{{ Auth::user()->id }}/{{ $apartment_id }}">
                             @csrf
                             <div class="row">

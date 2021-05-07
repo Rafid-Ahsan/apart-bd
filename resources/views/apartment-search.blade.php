@@ -9,11 +9,11 @@
             <div class="col-md-12 col-lg-8">
               <div class="title-single-box">
                 <h1 class="title-single">
-                   @if (isset($apartment))
-                        <h1>Your Serach List</h1>
-                   @else
+                    @empty($apartments)
                         <h1>No matching Apartments</h1>
-                   @endif
+                    @else
+                        <h1>Your Serach List</h1>
+                    @endempty
                 </h1>
                 <span class="color-text-a">Search apartments</span>
               </div>

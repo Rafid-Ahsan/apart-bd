@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ApartmentListController;
 use App\Http\Controllers\InboxController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RentController;
@@ -53,12 +54,20 @@ Route::put('/profile/update/{user}', [ProfileController::class, 'update'])->midd
 // Admin Routes
 Route::group(['middleware' => ['role:admin|moderator']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
+
+    //inbox routes
     Route::get('/inbox', [InboxController::class, 'index']);
+    Route::put('/inbox/update/{id}', [InboxController::class, 'update']);
 
     //team routes
     Route::get('/team', [Teamcontroller::class, 'index']);
     Route::put('/team/update/{user}', [Teamcontroller::class, 'update']);
     Route::get('/team/deleteRole/{user}', [Teamcontroller::class, 'delete']);
+
+    //apartment list
+    Route::get('/apartment-list', [ApartmentListController::class, 'index']);
+    Route::put('/apartment/update/status/{apartment}', [ApartmentListController::class, 'update_status']);
+    Route::get('/apartment/delete/{id}', [ApartmentListController::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';

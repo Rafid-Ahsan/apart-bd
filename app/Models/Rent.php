@@ -16,7 +16,8 @@ class Rent extends Model
         'message',
         'seller_id',
         'buyer_id',
-        'property_id'
+        'property_id',
+        'status'
     ];
 
     public function users() {

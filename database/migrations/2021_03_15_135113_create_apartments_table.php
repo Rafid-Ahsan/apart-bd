@@ -31,7 +31,7 @@ class CreateApartmentsTable extends Migration
             $table->integer('baths');
             $table->integer('garage')->default(0);
             $table->integer('balcony')->default(0);
-            $table->string('status')->default('Sale');
+            $table->enum('status', ['sale', 'sold'])->default('sale');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

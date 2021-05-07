@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class Teamcontroller extends Controller
 {
     public function index() {
-        $users = User::get();
+        $users = User::paginate(10);
         $roles = Role::get();
 
         return view('admin.team.index', [

@@ -18,7 +18,7 @@ class CreateRentsTable extends Migration
             $table->string('message');
             $table->foreignId('seller_id')->constrained('users');
             $table->foreignId('buyer_id')->constrained('users');
-            $table->foreignId('property_id')->constrained('apartments');
+            $table->foreignId('property_id')->constrained('apartments')->ondelete('cascade');
             $table->enum('status', ['unread', 'read', 'completed'])->default('unread');
             $table->timestamps();
         });
